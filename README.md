@@ -4,6 +4,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
 - [Installign XTLS on Linux](#installign-xtls-on-linux)
   - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
   - [Install Xray](#install-xray)
+  - [Enabling Xray.service](#enabling-xrayservice)
 
 
 ## Setting kernel for performance and raise [ulimits](https://phoenixnap.com/kb/ulimit-linux-command)
@@ -41,12 +42,19 @@ sudo apt install curl unzip
 curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
 unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
 
-# Generateing UUID, (Private and Public) keys, short IDs
+# Generateing UUID, keys, short ID
+
+# UUID
 ./xray uuid -i Secret
+# Private and Public keys
 ./xray x25519
+# short ID
 openssl rand -hex 8
 
+```
 
+## Enabling Xray.service
+```sh
 # Changing USERNAME to your username 
 sudo cat <<EOF > /etc/systemd/system/xray.service
 [Unit]
