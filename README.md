@@ -1,5 +1,10 @@
-# XTLS
+# Installign XTLS on Linux
 XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
+
+- [Installign XTLS on Linux](#installign-xtls-on-linux)
+  - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
+  - [Install Xray (XTLS)](#install-xray-xtls)
+
 
 ## Setting kernel for performance and raise [ulimits](https://phoenixnap.com/kb/ulimit-linux-command)
 ```sh
@@ -24,6 +29,22 @@ root soft     nofile         655350
 root hard     nofile         655350
 EOF
 
-sudo sysctl -p
+sudo sysctl --system
+```
+
+## Install Xray (XTLS)
+
+```sh
+sudo apt update && Sudo apt upgrade
+sudo apt install curl unzip
+
+curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
+unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
+
+
+
+
+
+
 ```
 
