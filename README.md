@@ -41,6 +41,12 @@ sudo apt install curl unzip
 curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
 unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
 
+# Generateing UUID, (Private and Public) keys, short IDs
+./xray uuid -i Secret
+./xray x25519
+openssl rand -hex 8
+
+
 
 
 
