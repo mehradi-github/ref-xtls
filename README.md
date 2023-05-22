@@ -120,5 +120,10 @@ EOF
 
 sudo systemctl daemon-reload && sudo systemctl enable xray
 
+sudo systemctl start xray && sudo systemctl status xray
+
+journalctl -u xray | less
+
+
 ```
 
