@@ -4,6 +4,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
 - [Installign XTLS on Linux](#installign-xtls-on-linux)
   - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
   - [Install Xray](#install-xray)
+  - [Adding xray's config](#adding-xrays-config)
   - [Enabling Xray.service](#enabling-xrayservice)
 
 
@@ -37,7 +38,7 @@ sudo sysctl --system
 
 ```sh
 sudo apt update && Sudo apt upgrade
-sudo apt install curl unzip
+sudo apt install vim curl unzip
 
 curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
 unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
@@ -53,6 +54,47 @@ openssl rand -hex 8
 
 ```
 
+## Adding xray's config
+```sh
+cd ~/xray
+curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
+```
+
+```json
+{
+         "listen":"0.0.0.0",
+         "port":443,
+         "protocol":"vless",
+         "settings":{
+            "clients":[
+               {
+                  "id":"EDIT-UUID", // Your generated UUID here.
+                  "flow":"xtls-rprx-vision"
+               }
+            ],
+            "decryption":"none"
+         },
+         "streamSettings":{
+            "network":"tcp",
+            "security":"reality",
+            "realitySettings":{
+               "show":false,
+               "dest":"EDIT-DEST", // ex: www.google-analytics.com:443 Edit to a website/server that works without VPN outside of Iran
+               "xver":0,
+               "serverNames":[
+                  "EDIT-SERVERNAME" // ex: www.google-analytics.com (SNI) Same as "dest" but without portnumber. 
+               ],
+               "privateKey":"EDIT-PRIVATEKEY", // Private key you generated earlier.
+               "minClientVer":"1.8.0",
+               "maxClientVer":"",
+               "maxTimeDiff":0,
+               "shortIds":["EDIT-SHORTID" // Short ID
+               ]
+            }
+         },
+  //...
+}        
+```
 ## Enabling Xray.service
 ```sh
 # Changing USERNAME to your username 

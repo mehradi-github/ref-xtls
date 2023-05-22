@@ -18,7 +18,7 @@
          "settings":{
             "clients":[
                {
-                  "id":"UUID HERE",
+                  "id":"EDIT-UUID",
                   "flow":"xtls-rprx-vision"
                }
             ],
@@ -29,17 +29,17 @@
             "security":"reality",
             "realitySettings":{
                "show":false,
-               "dest":"www.google-analytics.com:443",
+               "dest":"EDIT-DEST",
                "xver":0,
                "serverNames":[
-                  "www.google-analytics.com"
+                  "EDIT-SERVERNAME"
                ],
-               "privateKey":"PRIVATE KEY HERE",
+               "privateKey":"EDIT-PRIVATEKEY",
                "minClientVer":"1.8.0",
                "maxClientVer":"",
                "maxTimeDiff":0,
                "shortIds":[
-                  "SHORT ID HERE"
+                  "EDIT-SHORTID"
                ]
             }
          },
