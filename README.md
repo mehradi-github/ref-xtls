@@ -5,6 +5,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
   - [Protect your server with iptables](#protect-your-server-with-iptables)
   - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
   - [Install Xray](#install-xray)
+  - [Determining camouflage website](#determining-camouflage-website)
   - [Adding xray's config](#adding-xrays-config)
   - [Enabling Xray.service](#enabling-xrayservice)
 
@@ -62,11 +63,6 @@ sudo apt update && Sudo apt upgrade
 # Install Xray version 1.8.1 to run as root
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
 
-
-# sudo apt install vim curl unzip
-# curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
-# unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
-
 # Generate parameters
 # UUID
 ./xray uuid -i Secret
@@ -77,7 +73,12 @@ openssl rand -hex 8
 
 
 ```
-
+## Determining camouflage website
+- Be a foreign website
+- Support TLSv1.3 and H2
+- Have a URL that is not redirected elsewhere (though the apex domain name may be redirected to www)
+- Bonus points if it has a similar IP to your server
+  
 ## Adding xray's config
 ```sh
 cd ~/xray
