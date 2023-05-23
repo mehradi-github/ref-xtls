@@ -58,19 +58,23 @@ sudo sysctl --system
 
 ```sh
 sudo apt update && Sudo apt upgrade
-sudo apt install vim curl unzip
 
-curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
-unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
+# Install Xray version 1.8.1 to run as root
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
 
-# Generateing UUID, keys, short ID
 
+# sudo apt install vim curl unzip
+# curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
+# unzip Xray-linux-64.zip -d ~/xray && cd ~/xray
+
+# Generate parameters
 # UUID
 ./xray uuid -i Secret
 # Private and Public keys
 ./xray x25519
 # short ID
 openssl rand -hex 8
+
 
 ```
 
