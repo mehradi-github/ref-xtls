@@ -62,12 +62,12 @@ sudo apt update && Sudo apt upgrade
 
 # Install Xray version 1.8.1 to run as root
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
-
+cd 
 # Generate parameters
 # UUID
-./xray uuid -i Secret
+xray uuid -i Secret
 # Private and Public keys
-./xray x25519
+xray x25519
 # short ID
 openssl rand -hex 8
 
@@ -81,8 +81,8 @@ openssl rand -hex 8
   
 ## Adding xray's config
 ```sh
-cd ~/xray
 curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
+
 ```
 
 ```json
@@ -144,7 +144,7 @@ curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
 
 sudo systemctl daemon-reload && sudo systemctl enable xray
 sudo systemctl start xray && sudo systemctl status xray
-
+# show logs
 journalctl -u xray | less
 
 
