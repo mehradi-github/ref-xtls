@@ -62,7 +62,7 @@ sudo apt update && Sudo apt upgrade
 
 # Install Xray version 1.8.1 to run as root
 bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
-cd 
+
 # Generate parameters
 # UUID
 xray uuid -i Secret
@@ -80,10 +80,9 @@ openssl rand -hex 8
 - Bonus points if it has a similar IP to your server
   
 ## Adding xray's config
-```sh
-curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
+You can see Some examples of server and client config.json for Xray-core.
 
-```
+Download one of [Xray-examples](https://github.com/XTLS/Xray-examples) then edit params like as below:
 
 ```json
 {
@@ -120,6 +119,8 @@ curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
   //...
 }        
 ```
+after that save in **/usr/local/etc/xray/config.json**
+
 ## Enabling and starting the Xray service
 ```sh
 # sudo cat <<EOF > /etc/systemd/system/xray.service
