@@ -7,7 +7,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
   - [Install Xray](#install-xray)
   - [Determining camouflage website](#determining-camouflage-website)
   - [Adding xray's config](#adding-xrays-config)
-  - [Enabling Xray.service](#enabling-xrayservice)
+  - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
 
 ## Protect your server with iptables
 ```sh
@@ -120,31 +120,29 @@ curl -fsSLO https://github.com/mehradi-github/ref-xtls/blob/main/config.json
   //...
 }        
 ```
-## Enabling Xray.service
+## Enabling and starting the Xray service
 ```sh
-# Changing USERNAME to your username 
-sudo cat <<EOF > /etc/systemd/system/xray.service
-[Unit]
-Description=XTLS Xray-Core a VMESS/VLESS Server
-After=network.target nss-lookup.target
-[Service]
-User=USERNAME
-Group=USERNAME
-CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-NoNewPrivileges=true
-ExecStart=/home/USERNAME/xray/xray run -config /home/USERNAME/xray/config.json
-Restart=on-failure
-RestartPreventExitStatus=23
-StandardOutput=journal
-LimitNPROC=100000
-LimitNOFILE=1000000
-[Install]
-WantedBy=multi-user.target
-EOF
+# sudo cat <<EOF > /etc/systemd/system/xray.service
+# [Unit]
+# Description=XTLS Xray-Core a VMESS/VLESS Server
+# After=network.target nss-lookup.target
+# [Service]
+# User=USERNAME
+# Group=USERNAME
+# CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+# AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+# NoNewPrivileges=true
+# ExecStart=/home/USERNAME/xray/xray run -config /home/USERNAME/xray/config.json
+# Restart=on-failure
+# RestartPreventExitStatus=23
+# StandardOutput=journal
+# LimitNPROC=100000
+# LimitNOFILE=1000000
+# [Install]
+# WantedBy=multi-user.target
+# EOF
 
 sudo systemctl daemon-reload && sudo systemctl enable xray
-
 sudo systemctl start xray && sudo systemctl status xray
 
 journalctl -u xray | less
