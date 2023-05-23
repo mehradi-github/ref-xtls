@@ -2,12 +2,32 @@
 XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
 
 - [Installign XTLS on Linux](#installign-xtls-on-linux)
+  - [Protect your server with iptables](#protect-your-server-with-iptables)
   - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
   - [Install Xray](#install-xray)
   - [Adding xray's config](#adding-xrays-config)
   - [Enabling Xray.service](#enabling-xrayservice)
 
+## Protect your server with iptables
+```sh
+# replacing <HOME-IP-ADDRESS>
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -s <HOME-IP-ADDRESS> -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j DROP
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -P INPUT DROP
 
+ip6tables -A INPUT -i lo -j ACCEPT
+ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+ip6tables -A INPUT -p ipv6-icmp -j ACCEPT
+ip6tables -P INPUT DROP
+
+# Make the iptables rules permanent
+sudo apt install iptables-persistent
+```
 ## Setting kernel for performance and raise [ulimits](https://phoenixnap.com/kb/ulimit-linux-command)
 ```sh
 # performance
