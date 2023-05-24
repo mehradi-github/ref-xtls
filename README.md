@@ -80,42 +80,56 @@ openssl rand -hex 8
 - Bonus points if it has a similar IP to your server
   
 ## Adding xray's config
-You can see Some examples of server and client config.json for Xray-core.
+You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of server and client config.json for Xray-core.
 
-Download one of [Xray-examples](https://github.com/XTLS/Xray-examples) then edit params like as below:
+Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/config_server.json) and edit params like as below:
 
 ```json
 {
-         "listen":"0.0.0.0",
-         "port":443,
-         "protocol":"vless",
-         "settings":{
-            "clients":[
-               {
-                  "id":"EDIT-UUID", // Your generated UUID here.
-                  "flow":"xtls-rprx-vision"
-               }
-            ],
-            "decryption":"none"
-         },
-         "streamSettings":{
-            "network":"tcp",
-            "security":"reality",
-            "realitySettings":{
-               "show":false,
-               "dest":"EDIT-DEST", // ex: www.google-analytics.com:443 Edit to a website/server that works without VPN outside of Iran
-               "xver":0,
-               "serverNames":[
-                  "EDIT-SERVERNAME" // ex: www.google-analytics.com (SNI) Same as "dest" but without portnumber. 
-               ],
-               "privateKey":"EDIT-PRIVATEKEY", // Private key you generated earlier.
-               "minClientVer":"1.8.0",
-               "maxClientVer":"",
-               "maxTimeDiff":0,
-               "shortIds":["EDIT-SHORTID" // Short ID
-               ]
+   //...
+    "inbounds": [
+        {
+            "listen": "0.0.0.0",  // "0.0.0.0" Indicates listening to both IPv4 and IPv6
+            "port": 443, // The port on which the server listens
+            "protocol": "vless",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "EDIT-UUID", // Your generated UUID here.
+                        "flow": "xtls-rprx-vision"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "dest": "EDIT-DEST", // ex: www.microsoft.com:443
+                    "xver": 0,
+                    "serverNames": [
+                        "EDIT-SERVERNAME" //ex: www.microsoft.com
+                    ],
+                    "privateKey": "EDIT-PRIVATEKEY", // Private key you generated earlier.
+                    "minClientVer": "",
+                    "maxClientVer": "",
+                    "maxTimeDiff": 0,
+                    "shortIds": [
+                        "EDIT-SHORTID" // Short ID
+                    ]
+                }
+            },
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls"
+                ]
             }
-         },
+        }
+    ],
+        
   //...
 }        
 ```
