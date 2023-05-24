@@ -9,6 +9,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Determining camouflage website](#determining-camouflage-website)
     - [Adding Xray server's config](#adding-xray-servers-config)
     - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
+    - [Multi-file configuration](#multi-file-configuration)
   - [client](#client)
     - [Adding Xray client's config](#adding-xray-clients-config)
 ## Server
@@ -149,6 +150,7 @@ Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/conf
 ```
 after that save in **/usr/local/etc/xray/config.json**
 
+
 ### Enabling and starting the Xray service
 ```sh
 # sudo cat <<EOF > /etc/systemd/system/xray.service
@@ -178,6 +180,18 @@ journalctl -u xray | less
 
 
 ```
+### Multi-file configuration
+Moving configuration files to : **/etc/xray/confs**
+
+```sh
+sudo vi /etc/systemd/system/xray.service
+# changing below line
+# ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
+ExecStart=/usr/local/bin/xray run -confdir /etc/xray/confs
+
+```
+
+
 ## client
  ### Adding Xray client's config
 
