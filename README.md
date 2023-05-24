@@ -63,8 +63,17 @@ sudo sysctl --system
 ```sh
 sudo apt update && Sudo apt upgrade
 
+# bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
+
+curl -fsSLO https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+sudo chmod u+x ./install-release.sh
+
+# Showing Help
+sudo ./install-release.sh help
+
 # Install Xray version 1.8.1 to run as root
-bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install -u root --version 1.8.1
+sudo ./install-release.sh install -u root --version 1.8.1
+
 
 # Generate parameters
 # UUID
