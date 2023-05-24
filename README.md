@@ -7,8 +7,10 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
     - [Install Xray](#install-xray)
     - [Determining camouflage website](#determining-camouflage-website)
-    - [Adding xray's config](#adding-xrays-config)
+    - [Adding Xray server's config](#adding-xray-servers-config)
     - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
+  - [client](#client)
+    - [Adding Xray client's config](#adding-xray-clients-config)
 ## Server
 ### Protect your server with iptables
 ```sh
@@ -80,8 +82,8 @@ openssl rand -hex 8
 - Have a URL that is not redirected elsewhere (though the apex domain name may be redirected to www)
 - Bonus points if it has a similar IP to your server
   
-### Adding xray's config
-You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of server and client config.json for Xray-core.
+### Adding Xray server's config
+You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of server config.json for Xray-core.
 
 Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/config_server.json) and edit params like as below:
 
@@ -165,6 +167,58 @@ journalctl -u xray | less
 
 
 ```
+## client
+ ### Adding Xray client's config
 
+You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of client config.json for Xray-core.
 
+Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/client-config.json) and edit params like as below:
 
+```json
+{
+//...
+"outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "EDIT-ADDRESS", // IP server or DNS
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "EDIT-UUID", // Your generated UUID here.
+                                "flow": "xtls-rprx-vision",
+                                "encryption": "none"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "fingerprint": "chrome",
+                    "serverName": "EDIT-SERVERNAME", //ex: www.microsoft.com
+                    "publicKey": "EDIT-PUPLICKEY",  // Public key you generated earlier.
+                    "shortId": "EDIT-SHORTID", // Short ID
+                    "spiderX": "/"
+                }
+            },
+            "tag": "proxy"
+        },
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+
+//...
+}
+```
