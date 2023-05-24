@@ -74,6 +74,8 @@ sudo ./install-release.sh help
 # Install Xray version 1.8.1 to run as root
 sudo ./install-release.sh install -u root --version 1.8.1
 
+## Removing Xray
+sudo ./install-release.sh remove --purge 
 
 # Generate parameters
 # UUID
