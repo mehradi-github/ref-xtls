@@ -181,14 +181,21 @@ journalctl -u xray | less
 
 ```
 ### Multi-file configuration
-Moving configuration files to : **/etc/xray/confs**
-
 ```sh
+mkdir -p /etc/xray/confs
+mv /usr/local/etc/xray/config.json /etc/xray/confs/config.json 
+
 sudo vi /etc/systemd/system/xray.service
 # changing below line
 # ExecStart=/usr/local/bin/xray run -config /usr/local/etc/xray/config.json
-ExecStart=/usr/local/bin/xray run -confdir /etc/xray/confs
+ExecStart=/usr/local/bin/xray run -confdir /usr/local/etc/xray/confs
 
+sudo rm -r /etc/systemd/system/xray.service.d
+
+sudo systemctl daemon-reload && sudo systemctl restart xray
+sudo systemctl status xray
+
+systemd-delta
 ```
 
 
