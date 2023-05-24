@@ -2,14 +2,15 @@
 XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
 
 - [Installign XTLS on Linux](#installign-xtls-on-linux)
-  - [Protect your server with iptables](#protect-your-server-with-iptables)
-  - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
-  - [Install Xray](#install-xray)
-  - [Determining camouflage website](#determining-camouflage-website)
-  - [Adding xray's config](#adding-xrays-config)
-  - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
-
-## Protect your server with iptables
+  - [Server](#server)
+    - [Protect your server with iptables](#protect-your-server-with-iptables)
+    - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
+    - [Install Xray](#install-xray)
+    - [Determining camouflage website](#determining-camouflage-website)
+    - [Adding xray's config](#adding-xrays-config)
+    - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
+## Server
+### Protect your server with iptables
 ```sh
 # replacing <HOME-IP-ADDRESS>
 iptables -A INPUT -i lo -j ACCEPT
@@ -29,7 +30,7 @@ ip6tables -P INPUT DROP
 # Make the iptables rules permanent
 sudo apt install iptables-persistent
 ```
-## Setting kernel for performance and raise [ulimits](https://phoenixnap.com/kb/ulimit-linux-command)
+### Setting kernel for performance and raise [ulimits](https://phoenixnap.com/kb/ulimit-linux-command)
 ```sh
 # performance
 sudo cat <<EOF > /etc/sysctl.d/xray-sysctl.conf
@@ -55,7 +56,7 @@ EOF
 sudo sysctl --system
 ```
 
-## Install Xray
+### Install Xray
 
 ```sh
 sudo apt update && Sudo apt upgrade
@@ -73,13 +74,13 @@ openssl rand -hex 8
 
 
 ```
-## Determining camouflage website
+### Determining camouflage website
 - Be a foreign website
 - Support TLSv1.3 and H2
 - Have a URL that is not redirected elsewhere (though the apex domain name may be redirected to www)
 - Bonus points if it has a similar IP to your server
   
-## Adding xray's config
+### Adding xray's config
 You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of server and client config.json for Xray-core.
 
 Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/config_server.json) and edit params like as below:
@@ -135,7 +136,7 @@ Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/conf
 ```
 after that save in **/usr/local/etc/xray/config.json**
 
-## Enabling and starting the Xray service
+### Enabling and starting the Xray service
 ```sh
 # sudo cat <<EOF > /etc/systemd/system/xray.service
 # [Unit]
@@ -164,4 +165,6 @@ journalctl -u xray | less
 
 
 ```
+
+
 
