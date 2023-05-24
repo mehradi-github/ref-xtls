@@ -1,8 +1,8 @@
-# Installign XTLS on Linux
+# Installing XTLS on Linux
 XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
 
-- [Installign XTLS on Linux](#installign-xtls-on-linux)
-  - [Server](#server)
+- [Installing XTLS on Linux](#installing-xtls-on-linux)
+  - [Installing on server](#installing-on-server)
     - [Protect your server with iptables](#protect-your-server-with-iptables)
     - [Setting kernel for performance and raise ulimits](#setting-kernel-for-performance-and-raise-ulimits)
     - [Install Xray](#install-xray)
@@ -10,9 +10,9 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Adding Xray server's config](#adding-xray-servers-config)
     - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
     - [Multi-file configuration](#multi-file-configuration)
-  - [client](#client)
+  - [Installing on client](#installing-on-client)
     - [Adding Xray client's config](#adding-xray-clients-config)
-## Server
+## Installing on server
 ### Protect your server with iptables
 ```sh
 # replacing <HOME-IP-ADDRESS>
@@ -199,7 +199,7 @@ systemd-delta
 ```
 
 
-## client
+## Installing on client
  ### Adding Xray client's config
 
 You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of client config.json for Xray-core.
