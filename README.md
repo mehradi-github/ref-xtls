@@ -182,8 +182,8 @@ journalctl -u xray | less
 ```
 ### Multi-file configuration
 ```sh
-mkdir -p /etc/xray/confs
-mv /usr/local/etc/xray/config.json /etc/xray/confs/config.json 
+mkdir -p /usr/local/etc/xray/confs
+mv /usr/local/etc/xray/config.json /usr/local/etc/xray/confs/config.json 
 
 sudo vi /etc/systemd/system/xray.service
 # changing below line
