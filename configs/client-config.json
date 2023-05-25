@@ -47,7 +47,7 @@
     "inbounds": [
         {
             "listen": "127.0.0.1",
-            "port": 10808,
+            "port": 1089,
             "protocol": "socks",
             "settings": {
                 "udp": true
@@ -62,7 +62,7 @@
         },
         {
             "listen": "127.0.0.1",
-            "port": 10809,
+            "port": 8889,
             "protocol": "http",
             "sniffing": {
                 "enabled": true,
