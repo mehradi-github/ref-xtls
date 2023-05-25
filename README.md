@@ -203,5 +203,7 @@ systemd-delta
 ```sh
 curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
 sudo unzip ./Xray-linux-64.zip  -d /usr/local/bin/xray
+sudo cd /usr/local/bin/xray
+curl -fsSLo config.json https://raw.githubusercontent.com/mehradi-github/ref-xtls/main/configs/client-config.json
 ```
 
