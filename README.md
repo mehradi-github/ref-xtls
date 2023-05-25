@@ -14,6 +14,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Adding xray-core](#adding-xray-core)
     - [Editing Xray's config](#editing-xrays-config)
     - [Running xray](#running-xray)
+    - [Setting proxy](#setting-proxy)
 ## Installing on server
 ### Protect your server with iptables
 ```sh
@@ -269,4 +270,17 @@ sudo cd /usr/local/bin/xray
 sudo chmod +x ./xray
 ./xray run -c ./config.json
 ```
+### Setting proxy
+```sh
+export no_proxy=localhost,127.0.0.0/8,::1
+export ftp_proxy=http://127.0.0.1:8889/
+export https_proxy=http://127.0.0.1:8889/
+export NO_PROXY=localhost,127.0.0.0/8,::1
+export FTP_PROXY=http://127.0.0.1:8889/
+export HTTPS_PROXY=http://127.0.0.1:8889/
+export HTTP_PROXY=http://127.0.0.1:8889/
+export http_proxy=http://127.0.0.1:8889/
+export ALL_PROXY=socks5://127.0.0.1:1089/
+export all_proxy=socks5://127.0.0.1:1089/
 
+```
