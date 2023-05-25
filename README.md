@@ -11,6 +11,8 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
     - [Multi-file configuration](#multi-file-configuration)
   - [Installing on client](#installing-on-client)
+    - [Adding xray-core](#adding-xray-core)
+    - [Editing Xray's config](#editing-xrays-config)
 ## Installing on server
 ### Protect your server with iptables
 ```sh
@@ -200,10 +202,63 @@ systemd-delta
 
 ## Installing on client
 
+### Adding xray-core
 ```sh
 curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
 sudo unzip ./Xray-linux-64.zip  -d /usr/local/bin/xray
 sudo cd /usr/local/bin/xray
 curl -fsSLo config.json https://raw.githubusercontent.com/mehradi-github/ref-xtls/main/configs/client-config.json
+```
+### Editing Xray's config
+
+ Edit the params of [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/client-config.json) like as below:
+
+```json
+{
+//...
+"outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "EDIT-ADDRESS", // IP server or DNS
+                        "port": 443,
+                        "users": [
+                            {
+                                "id": "EDIT-UUID", // Your generated UUID here.
+                                "flow": "xtls-rprx-vision",
+                                "encryption": "none"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "tcp",
+                "security": "reality",
+                "realitySettings": {
+                    "show": false,
+                    "fingerprint": "chrome",
+                    "serverName": "EDIT-SERVERNAME", //ex: www.microsoft.com
+                    "publicKey": "EDIT-PUPLICKEY",  // Public key you generated earlier.
+                    "shortId": "EDIT-SHORTID", // Short ID
+                    "spiderX": "/"
+                }
+            },
+            "tag": "proxy"
+        },
+        {
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "block"
+        }
+    ]
+
+//...
+}
 ```
 
