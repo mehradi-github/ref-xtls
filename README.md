@@ -13,6 +13,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
   - [Installing on client](#installing-on-client)
     - [Adding xray-core](#adding-xray-core)
     - [Editing Xray's config](#editing-xrays-config)
+    - [Running xray](#running-xray)
 ## Installing on server
 ### Protect your server with iptables
 ```sh
@@ -260,5 +261,12 @@ curl -fsSLo config.json https://raw.githubusercontent.com/mehradi-github/ref-xtl
 
 //...
 }
+```
+
+### Running xray
+```sh
+sudo cd /usr/local/bin/xray
+sudo chmod +x ./xray
+./xray run -c ./config.json
 ```
 
