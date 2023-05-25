@@ -13,6 +13,7 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
   - [Installing on client](#installing-on-client)
     - [Adding xray-core](#adding-xray-core)
     - [Editing Xray's config](#editing-xrays-config)
+    - [Installing Go](#installing-go)
     - [Running xray](#running-xray)
     - [Setting proxy](#setting-proxy)
 ## Installing on server
@@ -263,7 +264,11 @@ curl -fsSLo config.json https://raw.githubusercontent.com/mehradi-github/ref-xtl
 //...
 }
 ```
-
+### Installing Go
+You can see more details for [installing go](https://github.com/mehradi-github/ref-devops-flow#installing-go). 
+```sh
+go version
+```
 ### Running xray
 ```sh
 sudo cd /usr/local/bin/xray
