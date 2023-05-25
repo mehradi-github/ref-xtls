@@ -11,7 +11,6 @@ XTLS protocol, providing a set of network tools such as Xray-core and REALITY.
     - [Enabling and starting the Xray service](#enabling-and-starting-the-xray-service)
     - [Multi-file configuration](#multi-file-configuration)
   - [Installing on client](#installing-on-client)
-    - [Adding Xray client's config](#adding-xray-clients-config)
 ## Installing on server
 ### Protect your server with iptables
 ```sh
@@ -200,57 +199,9 @@ systemd-delta
 
 
 ## Installing on client
- ### Adding Xray client's config
 
-You can see some [Xray-examples](https://github.com/XTLS/Xray-examples) of client config.json for Xray-core.
-
-Download [config.json](https://github.com/mehradi-github/ref-xtls/blob/main/configs/client-config.json) and edit params like as below:
-
-```json
-{
-//...
-"outbounds": [
-        {
-            "protocol": "vless",
-            "settings": {
-                "vnext": [
-                    {
-                        "address": "EDIT-ADDRESS", // IP server or DNS
-                        "port": 443,
-                        "users": [
-                            {
-                                "id": "EDIT-UUID", // Your generated UUID here.
-                                "flow": "xtls-rprx-vision",
-                                "encryption": "none"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "streamSettings": {
-                "network": "tcp",
-                "security": "reality",
-                "realitySettings": {
-                    "show": false,
-                    "fingerprint": "chrome",
-                    "serverName": "EDIT-SERVERNAME", //ex: www.microsoft.com
-                    "publicKey": "EDIT-PUPLICKEY",  // Public key you generated earlier.
-                    "shortId": "EDIT-SHORTID", // Short ID
-                    "spiderX": "/"
-                }
-            },
-            "tag": "proxy"
-        },
-        {
-            "protocol": "freedom",
-            "tag": "direct"
-        },
-        {
-            "protocol": "blackhole",
-            "tag": "block"
-        }
-    ]
-
-//...
-}
+```sh
+curl -fsSLO https://github.com/XTLS/Xray-core/releases/download/v1.8.1/Xray-linux-64.zip
+sudo unzip ./Xray-linux-64.zip  -d /usr/local/bin/xray
 ```
+
