@@ -157,26 +157,6 @@ after that save in **/usr/local/etc/xray/config.json**
 
 ### Enabling and starting the Xray service
 ```sh
-# sudo cat <<EOF > /etc/systemd/system/xray.service
-# [Unit]
-# Description=XTLS Xray-Core a VMESS/VLESS Server
-# After=network.target nss-lookup.target
-# [Service]
-# User=USERNAME
-# Group=USERNAME
-# CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-# AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
-# NoNewPrivileges=true
-# ExecStart=/home/USERNAME/xray/xray run -config /home/USERNAME/xray/config.json
-# Restart=on-failure
-# RestartPreventExitStatus=23
-# StandardOutput=journal
-# LimitNPROC=100000
-# LimitNOFILE=1000000
-# [Install]
-# WantedBy=multi-user.target
-# EOF
-
 sudo systemctl daemon-reload && sudo systemctl enable xray
 sudo systemctl start xray && sudo systemctl status xray
 # show logs
@@ -273,7 +253,29 @@ go version
 ```sh
 sudo cd /usr/local/bin/xray
 sudo chmod +x ./xray
-./xray run -c ./config.json
+
+sudo cat <<EOF > /etc/systemd/system/xray.service
+[Unit]
+Description=XTLS Xray-Core a VMESS/VLESS Client
+After=network.target nss-lookup.target
+[Service]
+User=USERNAME
+Group=USERNAME
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/xray/xray run -config /usr/local/bin/xray/config.json
+Restart=on-failure
+RestartPreventExitStatus=23
+StandardOutput=journal
+LimitNPROC=100000
+LimitNOFILE=1000000
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+# ./xray run -c ./config.json
 ```
 ### Setting proxy
 ```sh
