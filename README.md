@@ -254,6 +254,7 @@ go version
 sudo cd /usr/local/bin/xray
 sudo chmod +x ./xray
 
+# Changing USERNAME
 sudo cat <<EOF > /etc/systemd/system/xray.service
 [Unit]
 Description=XTLS Xray-Core a VMESS/VLESS Client
@@ -274,6 +275,9 @@ LimitNOFILE=1000000
 WantedBy=multi-user.target
 EOF
 
+sudo systemctl daemon-reload && sudo systemctl enable xray
+sudo systemctl start xray 
+sudo systemctl status xray
 
 # ./xray run -c ./config.json
 ```
