@@ -1,0 +1,63 @@
+{
+  "dns": null,
+  "fakedns": null,
+  "inbounds": [
+    {
+      "listen": null,
+      "port": 52156,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "email": "q2exjpz2",
+            "flow": "",
+            "id": "CH-UUID"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": []
+      },
+      "sniffing": {
+        "destOverride": ["http", "tls", "quic", "fakedns"],
+        "enabled": false
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none",
+        "tcpSettings": {
+          "acceptProxyProtocol": false,
+          "header": {
+            "type": "none"
+          }
+        }
+      },
+      "tag": "inbound-52156"
+    }
+  ],
+  "log": {
+    "access": "none",
+    "dnsLog": false,
+    "error": "./error.log",
+    "loglevel": "warning"
+  },
+  "observatory": null,
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {},
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {},
+      "tag": "blocked"
+    }
+  ],
+  "reverse": null,
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": []
+  },
+  "stats": {},
+  "transport": null
+}
