@@ -1,0 +1,88 @@
+{
+  "id": 1,
+  "userId": 0,
+  "up": 0,
+  "down": 0,
+  "total": 0,
+  "remark": "vl1",
+  "enable": true,
+  "expiryTime": 0,
+  "listen": "",
+  "port": 443,
+  "protocol": "vless",
+  "settings": {
+    "clients": [
+      {
+        "id": "UUID",
+        "flow": "",
+        "email": "EMAIL",
+        "totalGB": 0,
+        "expiryTime": 0,
+        "enable": true,
+        "tgId": "",
+        "subId": "SUBID",
+        "reset": 0
+      }
+    ],
+    "decryption": "none",
+    "fallbacks": []
+  },
+  "streamSettings": {
+    "network": "ws",
+    "security": "tls",
+    "externalProxy": [],
+    "tlsSettings": {
+      "serverName": "DOMAIN",
+      "minVersion": "1.0",
+      "maxVersion": "1.3",
+      "cipherSuites": "",
+      "rejectUnknownSni": false,
+      "certificates": [
+        {
+          "certificateFile": "/root/cert.crt",
+          "keyFile": "/root/private.key",
+          "ocspStapling": 3600
+        }
+      ],
+      "alpn": [
+        "h2",
+        "http/1.1"
+      ],
+      "settings": {
+        "allowInsecure": false,
+        "fingerprint": "chrome"
+      }
+    },
+    "wsSettings": {
+      "acceptProxyProtocol": false,
+      "path": "/",
+      "host": "DOMAIN",
+      "headers": {}
+    }
+  },
+  "tag": "inbound-443",
+  "sniffing": {
+    "enabled": false,
+    "destOverride": [
+      "http",
+      "tls",
+      "quic",
+      "fakedns"
+    ],
+    "metadataOnly": false,
+    "routeOnly": false
+  },
+  "clientStats": [
+    {
+      "id": 1,
+      "inboundId": 1,
+      "enable": true,
+      "email": "EMAIL",
+      "up": 0,
+      "down": 0,
+      "expiryTime": 0,
+      "total": 0,
+      "reset": 0
+    }
+  ]
+}
